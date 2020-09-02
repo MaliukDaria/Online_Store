@@ -18,14 +18,16 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long productId) {
-        return Storage.products.stream().filter( p -> Objects.equals(p.getId(), (productId))).findFirst();
+        return Storage.products.stream()
+                .filter(p -> Objects.equals(p.getId(), (productId)))
+                .findFirst();
     }
 
     @Override
     public Product update(Product product) {
         IntStream.range(0, Storage.products.size())
-                .filter( i -> Objects.equals(Storage.products.get(i).getId(), product.getId()))
-                .mapToObj(i -> Storage.products.set(i, product)).close();
+                .filter(i -> Objects.equals(Storage.products.get(i).getId(), product.getId()))
+                .forEach(i -> Storage.products.set(i, product));
         return product;
     }
 

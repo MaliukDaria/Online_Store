@@ -1,7 +1,6 @@
 package com.online.store.dao;
 
 import com.online.store.model.Product;
-
 import java.util.List;
 import java.util.Optional;
 

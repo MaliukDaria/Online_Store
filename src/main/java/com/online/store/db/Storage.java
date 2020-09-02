@@ -2,21 +2,20 @@ package com.online.store.db;
 
 import com.online.store.model.Order;
 import com.online.store.model.Product;
-import com.online.store.model.User;
 import com.online.store.model.ShoppingCart;
-
+import com.online.store.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private static Long productId = 0l;
-    private static Long userId = 0l;
-    private static Long shoppingCartId = 0l;
-    private static Long orderId = 0l;
     public static List<User> users = new ArrayList<>();
     public static List<Product> products = new ArrayList<>();
     public static List<ShoppingCart> shoppingCarts = new ArrayList<>();
     public static List<Order> orders = new ArrayList<>();
+    private static Long productId = 0L;
+    private static Long userId = 0L;
+    private static Long shoppingCartId = 0L;
+    private static Long orderId = 0L;
 
     public static void addProduct(Product product) {
         product.setId(++productId);
