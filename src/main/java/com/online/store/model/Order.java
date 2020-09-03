@@ -8,7 +8,6 @@ public class Order {
     private Long userId;
 
     public Order(List<Product> products, Long userId) {
-        this.products = products;
         this.userId = userId;
     }
 

@@ -16,12 +16,12 @@ public class Application {
         productService.create(car);
         productService.create(notebook);
         System.out.println(productService.getAll());
-        productService.delete(2L);
+        productService.delete(car.getId());
         System.out.println(productService.getAll());
         Product anotherNotebook = new Product("Dell",300);
         anotherNotebook.setId(3L);
         productService.update(anotherNotebook);
         System.out.println(productService.getAll());
-        System.out.println(productService.get(1L));
+        System.out.println(productService.get(phone.getId()));
     }
 }
