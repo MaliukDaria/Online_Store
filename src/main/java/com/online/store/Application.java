@@ -18,8 +18,9 @@ public class Application {
         System.out.println(productService.getAll());
         productService.delete(car.getId());
         System.out.println(productService.getAll());
-        Product anotherNotebook = new Product("Dell",300);
-        anotherNotebook.setId(3L);
+        Product anotherNotebook = productService.get(notebook.getId());
+        anotherNotebook.setName("Dell");
+        anotherNotebook.setPrice(300);
         productService.update(anotherNotebook);
         System.out.println(productService.getAll());
         System.out.println(productService.get(phone.getId()));

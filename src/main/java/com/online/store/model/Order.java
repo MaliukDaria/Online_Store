@@ -7,7 +7,7 @@ public class Order {
     private List<Product> products;
     private Long userId;
 
-    public Order(List<Product> products, Long userId) {
+    public Order(Long userId) {
         this.userId = userId;
     }
 

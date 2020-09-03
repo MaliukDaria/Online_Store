@@ -1,15 +1,16 @@
-package com.online.store.service;
+package com.online.store.service.impl;
 
 import com.online.store.dao.ProductDao;
 import com.online.store.lib.Inject;
 import com.online.store.lib.Service;
 import com.online.store.model.Product;
+import com.online.store.service.ProductService;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     @Inject
-    ProductDao productDao;
+    private ProductDao productDao;
 
     @Override
     public Product create(Product product) {
@@ -18,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product get(Long productId) {
-        return productDao.get(productId).orElseThrow();
+        return productDao.get(productId).get();
     }
 
     @Override
