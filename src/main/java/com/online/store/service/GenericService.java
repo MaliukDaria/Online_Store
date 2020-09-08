@@ -5,7 +5,7 @@ import java.util.List;
 public interface GenericService<T, I> {
     T create(T item);
 
-    T get(I id);
+    T getById(I id);
 
     List<T> getAll();
 

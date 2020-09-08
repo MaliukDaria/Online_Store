@@ -50,7 +50,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart get(Long id) {
+    public ShoppingCart getById(Long id) {
         return shoppingCartDao.getById(id).get();
     }
 

@@ -32,7 +32,7 @@ public class Application {
         dasha.setLogin("MyLogin");
         dasha.setPassword("password123");
         userService.update(dasha);
-        System.out.println(userService.get(dasha.getId()));
+        System.out.println(userService.getById(dasha.getId()));
         userService.delete(dasha.getId());
         System.out.println(userService.getAll());
         ShoppingCartService shoppingCartService =
@@ -70,7 +70,7 @@ public class Application {
         System.out.println(shoppingCartService.getByUserId(bob.getId()));
         orderService.completeOrder(bobShoppingCart);
         System.out.println(orderService.getUserOrders(bob.getId()));
-        System.out.println(orderService.get(2L));
+        System.out.println(orderService.getById(2L));
         orderService.delete(1L);
         System.out.println(orderService.getAll());
     }
