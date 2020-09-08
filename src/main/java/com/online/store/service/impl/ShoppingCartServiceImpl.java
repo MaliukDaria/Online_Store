@@ -6,6 +6,7 @@ import com.online.store.lib.Service;
 import com.online.store.model.Product;
 import com.online.store.model.ShoppingCart;
 import com.online.store.service.ShoppingCartService;
+import java.util.List;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -44,7 +45,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public boolean delete(ShoppingCart shoppingCart) {
-        return shoppingCartDao.delete(shoppingCart.getId());
+    public boolean delete(Long id) {
+        return shoppingCartDao.delete(id);
+    }
+
+    @Override
+    public ShoppingCart get(Long id) {
+        return shoppingCartDao.getById(id).get();
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return shoppingCartDao.getAll();
     }
 }

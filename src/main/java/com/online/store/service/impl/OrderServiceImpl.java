@@ -22,12 +22,17 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order(shoppingCart.getUserId());
         order.setProducts(List.copyOf(shoppingCart.getProducts()));
         shoppingCartService.clear(shoppingCart);
-        return orderDao.create(order);
+        return create(order);
     }
 
     @Override
     public List<Order> getUserOrders(Long userId) {
         return orderDao.getUserOrders(userId);
+    }
+
+    @Override
+    public Order create(Order item) {
+        return orderDao.create(item);
     }
 
     @Override

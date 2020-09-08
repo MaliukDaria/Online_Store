@@ -52,7 +52,7 @@ public class Application {
         System.out.println(shoppingCartService.getByUserId(bob.getId()));
         shoppingCartService.clear(alexShoppingCart);
         System.out.println(shoppingCartService.getByUserId(alex.getId()));
-        shoppingCartService.delete(alexShoppingCart);
+        shoppingCartService.delete(alexShoppingCart.getId());
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
         System.out.println(shoppingCartService.getByUserId(bob.getId()));
         orderService.completeOrder(bobShoppingCart);
