@@ -20,9 +20,9 @@ public class Application {
         productService.create(phone);
         productService.create(car);
         productService.create(notebook);
-        User dasha = new User("Dasha", "login", "password");
-        User alex = new User("Alex", "hello", "12345");
-        User bob = new User("Bob", "bobs login", "qwerty");
+        User dasha = new User("dasha", "password");
+        User alex = new User("alex", "12345");
+        User bob = new User("bob", "qwerty");
         UserService userService = (UserService) injector.getInstance(UserService.class);
         userService.create(dasha);
         userService.create(alex);

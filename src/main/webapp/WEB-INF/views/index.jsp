@@ -6,5 +6,7 @@
 <body>
 <h1>Home Page =)</h1>
 <h2> ${date}</h2>
+<a href="${pageContext.request.contextPath}
+/users/injectData">Inject test data into the DB</a>
 </body>
 </html>

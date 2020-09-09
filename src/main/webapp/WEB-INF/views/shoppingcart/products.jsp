@@ -2,26 +2,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All users</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>All users</h1>
+<h1>Shopping Cart</h1>
 <table border="1">
     <tr>
-        <th>ID</th>
-        <th>Login</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
     </tr>
-    <c:forEach var="user" items="${users}">
+    <c:forEach var="product" items="${products}">
         <tr>
             <td>
-                <c:out value="${user.id}"/>
+                <c:out value="${product.id}"/>
             </td>
             <td>
-                <c:out value="${user.login}"/>
+                <c:out value="${product.name}"/>
+            </td>
+            <td>
+                <c:out value="${product.price}"/>
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /users/delete?id=${user.id}">delete</a>
+                /shoppingCart/delete?id=${product.id}"> delete </a>
             </td>
         </tr>
     </c:forEach>

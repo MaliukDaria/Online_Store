@@ -15,10 +15,90 @@
 
     <servlet>
         <servlet-name>allUsers</servlet-name>
-        <servlet-class>com.online.store.controllers.UserController</servlet-class>
+        <servlet-class>com.online.store.controllers.user.controllers.GetAllUsersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allUsers</servlet-name>
         <url-pattern>/users/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>com.online.store.controllers.user.controllers.RegisterUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/users/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>injectData</servlet-name>
+        <servlet-class>com.online.store.controllers.user.controllers.InjectTestDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>injectData</servlet-name>
+        <url-pattern>/users/injectData</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete</servlet-name>
+        <servlet-class>com.online.store.controllers.user.controllers.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete</servlet-name>
+        <url-pattern>/users/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>addProduct</servlet-name>
+        <servlet-class>com.online.store.controllers.product.controllers.AddProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProduct</servlet-name>
+        <url-pattern>/products/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProducts</servlet-name>
+        <servlet-class>com.online.store.controllers.product.controllers.GetAllProductsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProducts</servlet-name>
+        <url-pattern>/products/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>com.online.store.controllers.product.controllers.DeleteProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern> /products/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>buyProduct</servlet-name>
+        <servlet-class>com.online.store.controllers.shoppingcart.controller.AddToShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>buyProduct</servlet-name>
+        <url-pattern>/products/buy</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProductFromSoppingCart</servlet-name>
+        <servlet-class>com.online.store.controllers.shoppingcart.controller.DeleteProductFromShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductFromSoppingCart</servlet-name>
+        <url-pattern>/shoppingCart/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>shoppingCart</servlet-name>
+        <servlet-class>com.online.store.controllers.shoppingcart.controller.GetProductsFromShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>shoppingCart</servlet-name>
+        <url-pattern>/shoppingCart/products</url-pattern>
     </servlet-mapping>
 </web-app>
