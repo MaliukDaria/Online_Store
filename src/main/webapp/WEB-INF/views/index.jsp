@@ -4,6 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello World =)</h1>
+<h1>Home Page =)</h1>
+<h2> ${date}</h2>
 </body>
 </html>
