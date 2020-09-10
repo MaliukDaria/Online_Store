@@ -25,10 +25,14 @@
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /shoppingCart/products/delete?id=${product.id}"> delete </a>
+                /shoppingcart/products/delete?id=${product.id}"> delete </a>
             </td>
         </tr>
     </c:forEach>
 </table>
+<form method="post" action="${pageContext.request.contextPath}/order/add">
+    <br/> <br/>
+    <button type="submit">Checkout</button>
+</form>
 </body>
 </html>

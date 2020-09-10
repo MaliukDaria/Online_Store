@@ -2,10 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Product catalog</title>
+    <title>Catalog</title>
 </head>
 <body>
-<h1>All products</h1>
+<h1>Product catalog</h1>
 <table border="1">
     <tr>
         <th>Id</th>
@@ -25,13 +25,12 @@
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /products/delete?id=${product.id}"> delete </a>
+                /shoppingcart/products/add?id=${product.id}"> buy </a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <br/> <br/>
-<a href="${pageContext.request.contextPath}/products/add"><button>Add product</button></a>
-</form>
+<a href="${pageContext.request.contextPath}/shoppingcart/products"><button>Go to shopping cart</button></a>
 </body>
 </html>

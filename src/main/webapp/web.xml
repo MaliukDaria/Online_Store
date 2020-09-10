@@ -67,6 +67,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>userCatalog</servlet-name>
+        <servlet-class>com.online.store.controllers.product.controllers.GetUserCatalogController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userCatalog</servlet-name>
+        <url-pattern>/products/usercatalog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteProduct</servlet-name>
         <servlet-class>com.online.store.controllers.product.controllers.DeleteProductController</servlet-class>
     </servlet>
@@ -81,7 +90,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addProductToShoppingCart</servlet-name>
-        <url-pattern>/shoppingCart/products/add</url-pattern>
+        <url-pattern>/shoppingcart/products/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -90,7 +99,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductFromSoppingCart</servlet-name>
-        <url-pattern>/shoppingCart/products/delete</url-pattern>
+        <url-pattern>/shoppingcart/products/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -99,6 +108,51 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>shoppingCart</servlet-name>
-        <url-pattern>/shoppingCart/products</url-pattern>
+        <url-pattern>/shoppingcart/products</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addOrder</servlet-name>
+        <servlet-class>com.online.store.controllers.order.controllers.AddOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addOrder</servlet-name>
+        <url-pattern>/order/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>com.online.store.controllers.order.controllers.GetOrderDetailsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/orders/order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userorders</servlet-name>
+        <servlet-class>com.online.store.controllers.order.controllers.GetUsersOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userorders</servlet-name>
+        <url-pattern>/orders/userorders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allOrders</servlet-name>
+        <servlet-class>com.online.store.controllers.order.controllers.GetAllOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allOrders</servlet-name>
+        <url-pattern>/orders/allorders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>com.online.store.controllers.order.controllers.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 </web-app>
