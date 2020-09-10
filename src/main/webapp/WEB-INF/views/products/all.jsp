@@ -25,7 +25,7 @@
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /products/buy?id=${product.id}"> buy </a>
+                /shoppingCart/products/add?id=${product.id}"> buy </a>
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}

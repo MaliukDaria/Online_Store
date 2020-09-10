@@ -25,7 +25,7 @@
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /shoppingCart/delete?id=${product.id}"> delete </a>
+                /shoppingCart/products/delete?id=${product.id}"> delete </a>
             </td>
         </tr>
     </c:forEach>

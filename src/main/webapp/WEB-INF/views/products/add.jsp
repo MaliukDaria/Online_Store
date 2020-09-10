@@ -6,8 +6,8 @@
 <body>
 <h2>Add new product to the catalog</h2>
 <form method="post" action="${pageContext.request.contextPath}/products/add">
-    Name: <input type="text" placeholder="name" name="name"> <br/> <br/>
-    Price: <input type="number" placeholder="price" step="0.1" name="price"> <br/> <br/>
+    Name: <input type="text" required placeholder="name" name="name"> <br/> <br/>
+    Price: <input type="number" required placeholder="price" step="0.1" name="price"> <br/> <br/>
     <button type="submit">Add</button>
 </form>
 </body>

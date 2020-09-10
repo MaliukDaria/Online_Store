@@ -6,7 +6,6 @@ import com.online.store.model.ShoppingCart;
 import com.online.store.service.ProductService;
 import com.online.store.service.ShoppingCartService;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +17,11 @@ public class AddToShoppingCartController extends HttpServlet {
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
-    private ShoppingCart shoppingCart;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        shoppingCart = shoppingCartService.getByUserId(USER_ID);
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         Long productId = Long.valueOf(req.getParameter("id"));
         Product product = productService.getById(productId);
         shoppingCartService.addProduct(shoppingCart, product);

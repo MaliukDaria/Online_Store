@@ -7,9 +7,9 @@
 <body>
 <h1>Register here:</h1>
 <form method="post" action="${pageContext.request.contextPath}/users/registration">
-    Login: <input type="text" name="login"> <br/> <br/>
-    Password: <input type="password" placeholder="password" name="password"> <br/> <br/>
-    Repeat password: <input type="password" placeholder="password" name="repeatPassword">
+    Login: <input type="text" required placeholder="login" name="login"> <br/> <br/>
+    Password: <input type="password" required minlength="4" placeholder="password" name="password"> <br/> <br/>
+    Repeat password: <input type="password"  required minlength="4" placeholder="password" name="repeatPassword">
     <h4 style="color:red"> ${errorMessage} </h4>
     <button type="submit">Register</button>
 </form>
