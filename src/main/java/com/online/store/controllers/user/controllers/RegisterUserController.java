@@ -36,7 +36,8 @@ public class RegisterUserController extends HttpServlet {
             shoppingCartService.create(usersShoppingCart);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
-            req.setAttribute("errorMessage", "Invalid password");
+
+            req.setAttribute("errorMessage", "The password does not match");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
         }
     }

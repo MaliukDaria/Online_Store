@@ -155,4 +155,14 @@
         <servlet-name>deleteOrder</servlet-name>
         <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>homePage</servlet-name>
+        <servlet-class>com.online.store.controllers.HomePageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homePage</servlet-name>
+        <url-pattern>/home-page</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -1,15 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>All users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: auto;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
 </head>
 <body>
-<h1>All users</h1>
-<table border="1">
+
+<h2>All users</h2>
+
+<table>
     <tr>
         <th>ID</th>
         <th>Login</th>
+        <th>   </th>
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
@@ -20,8 +41,10 @@
                 <c:out value="${user.login}"/>
             </td>
             <td>
+            </td>
+            <td>
                 <a href="${pageContext.request.contextPath}
-                /users/delete?id=${user.id}">delete</a>
+                /users/delete?id=${user.id}"><button>delete</button></a>
             </td>
         </tr>
     </c:forEach>

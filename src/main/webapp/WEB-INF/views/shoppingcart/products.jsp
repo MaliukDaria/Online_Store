@@ -1,11 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Shopping cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 60%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
 </head>
 <body>
-<h1>Shopping Cart</h1>
+
+<h2>Shopping Cart</h2>
+
 <table border="1">
     <tr>
         <th>Id</th>
@@ -36,3 +56,4 @@
 </form>
 </body>
 </html>
+
