@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GetAllOrdersController extends HttpServlet {
+public class ManageOrdersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.online.store");
     private final OrderService orderService =
             (OrderService) injector.getInstance(OrderService.class);

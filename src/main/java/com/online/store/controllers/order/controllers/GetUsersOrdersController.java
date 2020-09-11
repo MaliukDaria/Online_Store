@@ -23,5 +23,4 @@ public class GetUsersOrdersController extends HttpServlet {
         req.setAttribute("orders", userOrders);
         req.getRequestDispatcher("/WEB-INF/views/orders/userOrders.jsp").forward(req, resp);
     }
-
 }

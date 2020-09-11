@@ -17,7 +17,7 @@
             </td>
             <td>
                 <a href="${pageContext.request.contextPath}
-                /orders/order?id=${order.id}">order details</a>
+                /orders/details?id=${order.id}">order details</a>
             </td>
         </tr>
     </c:forEach>

@@ -25,6 +25,6 @@ public class GetOrderDetailsController extends HttpServlet {
         List<Product> products = orderService.getById(orderId).getProducts();
         req.setAttribute("products", products);
         req.setAttribute("orderId", orderId);
-        req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/orders/orderDetails.jsp").forward(req, resp);
     }
 }

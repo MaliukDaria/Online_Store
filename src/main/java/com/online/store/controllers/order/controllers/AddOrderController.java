@@ -20,14 +20,14 @@ public class AddOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/orders/userOrders.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/orders/user.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         orderService.completeOrder(shoppingCartService.getByUserId(USER_ID));
-        resp.sendRedirect(req.getContextPath() + "/orders/userorders");
+        resp.sendRedirect(req.getContextPath() + "/orders/user");
     }
 }
 

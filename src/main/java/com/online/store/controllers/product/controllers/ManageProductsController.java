@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GetUserCatalogController extends HttpServlet {
+public class ManageProductsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("com.online.store");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -17,6 +17,6 @@ public class GetUserCatalogController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("products", productService.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/products/userCatalog.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
     }
 }

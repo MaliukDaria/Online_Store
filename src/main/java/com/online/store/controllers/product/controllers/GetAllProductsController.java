@@ -17,6 +17,6 @@ public class GetAllProductsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.setAttribute("products", productService.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/products/userCatalog.jsp").forward(req, resp);
     }
 }
