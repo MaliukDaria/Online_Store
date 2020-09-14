@@ -6,8 +6,6 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
-
-
         input[type=text], input[type=password] {
             width: 50%;
             padding: 12px 20px;
@@ -15,9 +13,7 @@
             display: inline-block;
             border: 1px solid #ccc;
             box-sizing: border-box;
-
         }
-
         button {
             background-color: #34432f;
             color: white;
@@ -27,15 +23,9 @@
             cursor: pointer;
             width: 50%;
         }
-
         button:hover {
             opacity: 0.8;
         }
-
-        .container {
-            padding: 16px;
-        }
-
         span.psw {
             float: right;
             padding-top: 16px;
@@ -48,10 +38,8 @@
     <h4 style="color:red"> ${errorMsg} </h4>
     Login </br>
     <input type="text" required placeholder=" Enter login" name="login" required> </br>
-
     Password </br>
     <input type="password" required placeholder="Enter password" name="password" required> </br>
-
     <button type="submit">Login</button>
     </br>
     <a href="${pageContext.request.contextPath}/users/registration">Register</a>

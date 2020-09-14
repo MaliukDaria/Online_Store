@@ -11,21 +11,17 @@
             width: 60%;
             border: 1px solid #ddd;
         }
-
         th, td {
             text-align: left;
             padding: 16px;
         }
-
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
     </style>
 </head>
 <body>
-
 <h2>Shopping Cart</h2>
-
 <table border="1">
     <tr>
         <th>Id</th>

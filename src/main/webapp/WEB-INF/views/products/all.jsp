@@ -12,7 +12,6 @@
             width: 100%;
             border: 1px solid #ddd;
         }
-
         th, td {
             text-align: left;
             padding: 16px;
@@ -24,9 +23,7 @@
     </style>
 </head>
 <body>
-
 <h1>All products</h1>
-
 <table border="1">
     <tr>
         <th>Id</th>

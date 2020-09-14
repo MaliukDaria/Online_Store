@@ -12,7 +12,6 @@
             width: 100%;
             border: 1px solid #ddd;
         }
-
         input[type=submit] {
             width: 100%;
             background-color: #34432f;
@@ -23,21 +22,17 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
         th, td {
             text-align: left;
             padding: 16px;
         }
-
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
     </style>
 </head>
 <body>
-
 <h2>Product catalog</h2>
-
 <table border="1">
     <tr>
         <th>Id</th>
