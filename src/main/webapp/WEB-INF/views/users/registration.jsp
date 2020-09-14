@@ -1,20 +1,4 @@
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Registration</title>
-</head>
-<body>
-<h1>Register here:</h1>
-<form method="post" action="${pageContext.request.contextPath}/users/registration">
-    Login: <input type="text" required autofocus placeholder="login" name="login"> <br/> <br/>
-    Password: <input type="password" required autofocus minlength="4" placeholder="password" name="password"> <br/> <br/>
-    Repeat password: <input type="password" autofocus required minlength="4" placeholder="password" name="repeatPassword">
-    <h4 style="color:red"> ${errorMessage} </h4>
-    <button type="submit">Register</button>
-</form>
-</body>
-</html>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,21 +74,18 @@
 <form method="post" action="${pageContext.request.contextPath}/users/registration">
     <div class="container">
         <h1>Register</h1>
+        <h4 ></h4>
         Login
         <input type="text" placeholder="Login" name="login" required>
-
+        <h4 style="color:red"> ${errorLoginMessage} </h4>
         Password
         <input type="password" required minlength="4" placeholder="Enter Password" name="password" required>
-
+        <h4 ></h4>
         Repeat Password
         <input type="password" required minlength="4" placeholder="Repeat Password" name="repeatPassword" required>
         <h4 style="color:red"> ${errorMessage} </h4>
         <button type="submit" class="registerbtn">Register</button>
     </div>
-
 </form>
-
 </body>
-
-<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_css_register_form by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Sep 2019 08:50:28 GMT -->
 </html>

@@ -13,6 +13,17 @@
             border: 1px solid #ddd;
         }
 
+        input[type=submit] {
+            width: 100%;
+            background-color: #34432f;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         th, td {
             text-align: left;
             padding: 16px;
@@ -53,8 +64,5 @@
 </table>
 <br/> <br/>
 <a href="${pageContext.request.contextPath}/shopping-cart/products"><button>Go to shopping cart</button></a>
-
 </body>
-
-<!-- Mirrored from www.w3schools.com/howto/tryit.asp?filename=tryhow_css_table_zebra by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Sep 2019 08:50:29 GMT -->
 </html>

@@ -55,4 +55,3 @@
 <a href="${pageContext.request.contextPath}/products/add"><button>Add product</button></a>
 </body>
 </html>
-
