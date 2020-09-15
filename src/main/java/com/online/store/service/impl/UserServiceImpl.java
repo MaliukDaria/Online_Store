@@ -6,6 +6,7 @@ import com.online.store.lib.Service;
 import com.online.store.model.User;
 import com.online.store.service.UserService;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByLogin(String login) {
-        return userDao.getByLogin(login).get();
+    public Optional<User> getByLogin(String login) {
+        return userDao.getByLogin(login);
     }
 
     @Override

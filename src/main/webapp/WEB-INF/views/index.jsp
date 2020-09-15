@@ -15,5 +15,6 @@
 <a href="${pageContext.request.contextPath}/products/manage"><button>Product catalog for admin</button></a> <br/> <br/>
 <a href="${pageContext.request.contextPath}/orders/user"><button>User orders</button></a> <br/> <br/>
 <a href="${pageContext.request.contextPath}/orders/all"><button>All orders</button></a> <br/> <br/>
+<a href="${pageContext.request.contextPath}/home-page"><button>Home Page</button></a> <br/> <br/>
 </body>
 </html>

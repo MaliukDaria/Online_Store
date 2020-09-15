@@ -1,11 +1,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #34432f;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+    </style>
 </head>
 <body>
-<h1>Product catalog</h1>
+<h2>Product catalog</h2>
 <table border="1">
     <tr>
         <th>Id</th>

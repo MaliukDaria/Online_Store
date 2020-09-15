@@ -27,6 +27,10 @@ public class RegisterUserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String login = req.getParameter("login");
+        if (userService.getByLogin(login).isPresent()) {
+            req.setAttribute("errorLoginMessage", "User with this login is already registered");
+            req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+        }
         String password = req.getParameter("password");
         String repeatPassword = req.getParameter("repeatPassword");
         if (password.equals(repeatPassword)) {
@@ -36,7 +40,7 @@ public class RegisterUserController extends HttpServlet {
             shoppingCartService.create(usersShoppingCart);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
-            req.setAttribute("errorMessage", "Invalid password");
+            req.setAttribute("errorMessage", "The passwords does not match");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
         }
     }
