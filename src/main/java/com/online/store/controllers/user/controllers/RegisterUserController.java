@@ -27,6 +27,7 @@ public class RegisterUserController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String login = req.getParameter("login");
+        req.setAttribute("login", login);
         if (userService.getByLogin(login).isPresent()) {
             req.setAttribute("errorLoginMessage", "User with this login is already registered");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
