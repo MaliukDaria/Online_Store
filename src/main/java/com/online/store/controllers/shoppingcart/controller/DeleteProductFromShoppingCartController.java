@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DeleteProductFromShoppingCartController extends HttpServlet {
-    public static final String USER_ID = "userId";
+    private static final String USER_ID = "userId";
     private static final Injector injector = Injector.getInstance("com.online.store");
     private final ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);

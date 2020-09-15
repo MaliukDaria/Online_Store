@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
-    public static final String USER_ID = "userId";
+    private static final String USER_ID = "userId";
     private static final Injector injector = Injector.getInstance("com.online.store");
     private final AuthenticationService authenticationService =
             (AuthenticationService) injector.getInstance(AuthenticationService.class);
