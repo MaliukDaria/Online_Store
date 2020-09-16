@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>injectData</servlet-name>
-        <servlet-class>com.online.store.controllers.user.controllers.InjectTestDataController</servlet-class>
+        <servlet-class>com.online.store.controllers.InjectTestDataController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>injectData</servlet-name>
@@ -156,14 +156,14 @@
         <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+<!--    <servlet>
         <servlet-name>homePage</servlet-name>
         <servlet-class>com.online.store.controllers.HomePageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/home-page</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <servlet>
         <servlet-name>login</servlet-name>

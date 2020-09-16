@@ -1,4 +1,4 @@
-package com.online.store.controllers.user.controllers;
+package com.online.store.controllers;
 
 import com.online.store.lib.Injector;
 import com.online.store.model.Product;

@@ -3,6 +3,8 @@ package com.online.store.web.filters;
 import com.online.store.lib.Injector;
 import com.online.store.service.UserService;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,9 +19,15 @@ public class AuthenticationFilter implements Filter {
     private static final Injector injector = Injector.getInstance("com.online.store");
     private final UserService userService =
             (UserService) injector.getInstance(UserService.class);
+    private Set<String> availableUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) {
+        availableUrls.add("/");
+        availableUrls.add("/users/login");
+        availableUrls.add("/users/registration");
+        availableUrls.add("/users/injectData");
+        availableUrls.add("/products/all");
     }
 
     @Override
@@ -28,7 +36,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String url = req.getServletPath();
-        if (url.equals("/users/login") || url.equals("/users/registration")) {
+        if (availableUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }

@@ -48,6 +48,7 @@
     <a href="${pageContext.request.contextPath}/users/all">All users</a>
     <a href="${pageContext.request.contextPath}/products/manage">Product catalog(Admin)</a>
     <a href="${pageContext.request.contextPath}/orders/all">Orders(Admin)</a>
+    <a href="${pageContext.request.contextPath}/users/login" class="right">Login</a>
     <a href="${pageContext.request.contextPath}/users/logout" class="right">Logout</a>
     <a href="${pageContext.request.contextPath}/users/registration" class="right">Register</a>
 
