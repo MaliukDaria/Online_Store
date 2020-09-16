@@ -56,10 +56,10 @@
         <h1>Register</h1>
         <h4 ></h4>
         Login
-        <input type="text" placeholder="Login" name="login" required>
+        <input type="text"  required placeholder="Login" name="login" value=${login}>
         <h4 style="color:red"> ${errorLoginMessage} </h4>
         Password
-        <input type="password" required minlength="4" placeholder="Enter Password" name="password" required>
+        <input type="password" required minlength="4"  required placeholder="Enter Password" name="password">
         <h4 ></h4>
         Repeat Password
         <input type="password" required minlength="4" placeholder="Repeat Password" name="repeatPassword" required>
