@@ -1,6 +1,8 @@
 package com.online.store.controllers.shoppingcart.controller;
 
 import com.online.store.lib.Injector;
+import com.online.store.model.Product;
+import com.online.store.model.ShoppingCart;
 import com.online.store.service.ProductService;
 import com.online.store.service.ShoppingCartService;
 import java.io.IOException;
@@ -20,10 +22,10 @@ public class DeleteProductFromShoppingCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
         Long productId = Long.valueOf(req.getParameter("id"));
-        shoppingCartService.deleteProduct(
-                shoppingCartService.getByUserId(
-                        (Long) req.getSession().getAttribute(USER_ID)),
-                productService.getById(productId));
+        Long userId = (Long) (req.getSession().getAttribute(USER_ID));
+        ShoppingCart userShoppingCart = shoppingCartService.getByUserId(userId);
+        Product product = productService.getById(productId);
+        shoppingCartService.deleteProduct(userShoppingCart, product);
         resp.sendRedirect(req.getContextPath() + "/shopping-cart/products");
     }
 }
