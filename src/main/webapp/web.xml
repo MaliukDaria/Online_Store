@@ -33,7 +33,7 @@
 
     <servlet>
         <servlet-name>injectData</servlet-name>
-        <servlet-class>com.online.store.controllers.user.controllers.InjectTestDataController</servlet-class>
+        <servlet-class>com.online.store.controllers.InjectTestDataController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>injectData</servlet-name>
@@ -81,7 +81,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProduct</servlet-name>
-        <url-pattern> /products/delete</url-pattern>
+        <url-pattern>/products/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -157,15 +157,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>homePage</servlet-name>
-        <servlet-class>com.online.store.controllers.HomePageController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>homePage</servlet-name>
-        <url-pattern>/home-page</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>com.online.store.controllers.user.controllers.LoginController</servlet-class>
     </servlet>
@@ -174,12 +165,30 @@
         <url-pattern>/users/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.online.store.controllers.user.controllers.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/users/logout</url-pattern>
+    </servlet-mapping>
+
 <filter>
     <filter-name>authenticationFilter</filter-name>
     <filter-class>com.online.store.web.filters.AuthenticationFilter</filter-class>
 </filter>
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>authorisationFilter</filter-name>
+        <filter-class>com.online.store.web.filters.AuthorisationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorisationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
