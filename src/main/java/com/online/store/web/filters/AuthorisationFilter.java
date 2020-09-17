@@ -61,7 +61,6 @@ public class AuthorisationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
     private boolean isAuthorized(User user, List<Role.RoleName> authorizedRoles) {
