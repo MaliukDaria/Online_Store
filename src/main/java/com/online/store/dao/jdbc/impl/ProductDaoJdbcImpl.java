@@ -47,9 +47,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             int numberOfUpdatedProducts = statement.executeUpdate();
             if (numberOfUpdatedProducts != 0) {
                 return item;
-            } else {
-                throw new SQLException();
             }
+            throw new SQLException();
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t update product", e);
         }
@@ -65,9 +64,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (resultSet.next()) {
                 Product product = getProduct(resultSet);
                 return Optional.of(product);
-            } else {
-                return Optional.empty();
             }
+            return Optional.empty();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get product by id", e);
         }
