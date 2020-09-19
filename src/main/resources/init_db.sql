@@ -5,5 +5,3 @@ CREATE TABLE `online_store`.`products` (
   `name` VARCHAR(255) NOT NULL,
   `price` DOUBLE NOT NULL,
   PRIMARY KEY (`product_id`));
-
-  INSERT INTO `online_store`.`products` (`name`, `price`) VALUES ('Samsung', '500');
