@@ -44,8 +44,12 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setString(1, item.getName());
             statement.setDouble(2, item.getPrice());
             statement.setLong(3, item.getId());
-            statement.executeUpdate();
-            return item;
+            int numberOfUpdatedProducts = statement.executeUpdate();
+            if (numberOfUpdatedProducts != 0) {
+                return item;
+            } else {
+                throw new SQLException();
+            }
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t update product", e);
         }
@@ -75,8 +79,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            int i = statement.executeUpdate();
-            return i != 0;
+            int numberOfDeletedProducts = statement.executeUpdate();
+            return numberOfDeletedProducts != 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete product", e);
         }
