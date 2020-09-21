@@ -17,40 +17,43 @@ import java.util.Optional;
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
-    public Product create(Product item) {
+    public Product create(Product product) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            Product product = new Product(item.getName(), item.getPrice());
-            statement.setString(1, item.getName());
-            statement.setDouble(2, item.getPrice());
+            Product createdProduct = new Product(product.getName(), product.getPrice());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                product.setId(resultSet.getLong(1));
+                createdProduct.setId(resultSet.getLong(1));
             }
-            return product;
+            return createdProduct;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't create product", e);
+            throw new DataProcessingException(
+                    "Can't create product with name " + product.getName(), e);
         }
     }
 
     @Override
-    public Product update(Product item) {
+    public Product update(Product product) {
         String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, item.getName());
-            statement.setDouble(2, item.getPrice());
-            statement.setLong(3, item.getId());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.setLong(3, product.getId());
             int numberOfUpdatedProducts = statement.executeUpdate();
             if (numberOfUpdatedProducts != 0) {
-                return item;
+                return product;
             }
-            throw new SQLException();
+            throw new DataProcessingException(
+                    "Can't find product with id: " + product.getId() + "to update it");
         } catch (SQLException e) {
-            throw new DataProcessingException("Can`t update product", e);
+            throw new DataProcessingException(
+                    "Can't update product with id: " + product.getId(), e);
         }
     }
 
@@ -67,7 +70,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get product by id", e);
+            throw new DataProcessingException("Can't get product by id: " + id, e);
         }
     }
 
@@ -80,7 +83,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             int numberOfDeletedProducts = statement.executeUpdate();
             return numberOfDeletedProducts != 0;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete product", e);
+            throw new DataProcessingException("Can't delete product by id: " + id, e);
         }
     }
 
