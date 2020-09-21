@@ -39,7 +39,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
+        String query = "UPDATE products SET name = ?, price = ? "
+                + "WHERE product_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, product.getName());
@@ -50,7 +51,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return product;
             }
             throw new DataProcessingException(
-                    "Can't find product with id: " + product.getId() + "to update it");
+                    "Can't find product with id: " + product.getId() + " to update it");
         } catch (SQLException e) {
             throw new DataProcessingException(
                     "Can't update product with id: " + product.getId(), e);

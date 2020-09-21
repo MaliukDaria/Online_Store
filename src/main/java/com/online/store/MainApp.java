@@ -25,12 +25,7 @@ public class MainApp {
         productService.update(sonyFromDb);
         System.out.println("expected New Sony with price: " + sonyFromDb.getPrice()
                 + "\n actual: " + productService.getById(sonyFromDb.getId()));
-        productService.delete(sonyFromDb.getId());
-        try {
-            productService.getById(sonyFromDb.getId());
-        } catch (java.util.NoSuchElementException e) {
-            System.out.println("Product deleted successful");
-        }
+        System.out.println("expected true\n actual: " + productService.delete(sonyFromDb.getId()));
         System.out.println(Collections.unmodifiableList(productService.getAll()));
     }
 }
