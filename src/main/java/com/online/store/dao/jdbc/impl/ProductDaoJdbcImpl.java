@@ -77,7 +77,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "UPDATE products SET isDeleted = true WHERE product_id = ?";
+        String query = "UPDATE products SET isDeleted = true " +
+                "WHERE product_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, id);
