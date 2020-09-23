@@ -41,8 +41,16 @@ public class ShoppingCart {
     public String toString() {
         return "ShoppingCart{"
                 + "id=" + id
-                + ", products=" + products
                 + ", userId=" + userId
+                + ", products=" + toProcuctsString(products)
                 + '}';
+    }
+
+    private String toProcuctsString(List<Product> products) {
+        StringBuilder allProducts = new StringBuilder();
+        for (Product product : products) {
+            allProducts.append(product.getName()).append(" ");
+        }
+        return allProducts.toString();
     }
 }
