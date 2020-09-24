@@ -22,15 +22,15 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User create(User user) {
         User createdUser = addUserToUsersTable(user);
-        setUserRolesInDb(createdUser);
+        insertUserRolesRelation(createdUser);
         return createdUser;
     }
 
     @Override
     public User update(User user) {
         User updatedUser = updateUserInUsersTable(user);
-        deleteUserRolesInDb(updatedUser);
-        setUserRolesInDb(updatedUser);
+        deleteUserRolesRelation(updatedUser);
+        insertUserRolesRelation(updatedUser);
         return updatedUser;
     }
 
@@ -38,7 +38,8 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> getById(Long id) {
         Optional<User> user = getUserFromUsersTable(id);
         if (user.isPresent()) {
-            return Optional.of(getAndSetRoles(user.get()));
+            user.get().setRoles(getUserRoles(id));
+            return user;
         }
         return Optional.empty();
     }
@@ -47,14 +48,14 @@ public class UserDaoJdbcImpl implements UserDao {
     public Optional<User> getByLogin(String login) {
         Optional<User> user = getUserFromUsersTable(login);
         if (user.isPresent()) {
-            return Optional.of(getAndSetRoles(user.get()));
+            user.get().setRoles(getUserRoles(user.get().getId()));
+            return user;
         }
         return Optional.empty();
     }
 
     @Override
     public boolean delete(Long id) {
-        deleteUserRolesInDb(getById(id).get());
         return deleteUserFromUsersTable(id);
     }
 
@@ -62,7 +63,7 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> getAll() {
         List<User> allUsersFromUsersTable = getAllUsersFromUsersTable();
         for (User user: allUsersFromUsersTable) {
-            getAndSetRoles(user);
+            user.setRoles(getUserRoles(user.getId()));
         }
         return allUsersFromUsersTable;
     }
@@ -183,7 +184,7 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private boolean setUserRolesInDb(User user) {
+    private boolean insertUserRolesRelation(User user) {
         for (Role role: user.getRoles()) {
             role.setId(getRoleIdByName(role));
         }
@@ -207,7 +208,7 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private boolean deleteUserRolesInDb(User user) {
+    private boolean deleteUserRolesRelation(User user) {
         String deleteUsersRolesQuery = "DELETE FROM users_roles WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(deleteUsersRolesQuery)) {
@@ -220,7 +221,7 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     private Set<Role> getUserRoles(Long userId) {
-        String getUserRolesQuery = "SELECT r.name FROM roles r "
+        String getUserRolesQuery = "SELECT r.role_id, r.name FROM roles r "
                 + "INNER JOIN users_roles ur ON r.role_id = ur.role_id "
                 + "WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
@@ -230,18 +231,13 @@ public class UserDaoJdbcImpl implements UserDao {
             Set<Role> userRoles = new HashSet<>();
             while (resultSet.next()) {
                 Role role = Role.of(resultSet.getString("name"));
+                role.setId(resultSet.getLong("role_id"));
                 userRoles.add(role);
             }
             return userRoles;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get users roles", e);
         }
-    }
-
-    private User getAndSetRoles(User user) {
-        Set<Role> userRoles = getUserRoles(user.getId());
-        user.setRoles(userRoles);
-        return user;
     }
 
     private User getUserFromResultSet(ResultSet resultSet) {

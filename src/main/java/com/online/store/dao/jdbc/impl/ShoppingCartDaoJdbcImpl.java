@@ -20,41 +20,46 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart cart) {
         ShoppingCart createdShoppingCart = addShoppingCartToShoppingCartsTable(cart);
-        setProductsToShoppingCartInDb(createdShoppingCart);
+        insertShoppingCartProductsRelation(createdShoppingCart);
         return createdShoppingCart;
     }
 
     @Override
     public ShoppingCart update(ShoppingCart cart) {
         ShoppingCart updatedShoppingCart = updateShoppingCartInShoppingCartTable(cart);
-        deleteProductsFromShoppingCartInDb(cart);
-        setProductsToShoppingCartInDb(cart);
+        deleteShoppingCartProductsRelation(cart);
+        insertShoppingCartProductsRelation(cart);
         return updatedShoppingCart;
     }
 
     @Override
     public Optional<ShoppingCart> getById(Long id) {
         Optional<ShoppingCart> shoppingCart = getFromShoppingCartTableById(id);
-        return getAndSetProductList(shoppingCart);
+        if (shoppingCart.isPresent()) {
+            shoppingCart.get().setProducts(getProductList(id));
+        }
+        return shoppingCart;
     }
 
     @Override
     public Optional<ShoppingCart> getByUserId(Long userId) {
         Optional<ShoppingCart> shoppingCart = getFromShoppingCartTableByUserId(userId);
-        return getAndSetProductList(shoppingCart);
+        if (shoppingCart.isPresent()) {
+            shoppingCart.get().setProducts(getProductList(shoppingCart.get().getId()));
+        }
+        return shoppingCart;
     }
 
     @Override
     public boolean delete(Long id) {
-        deleteProductsFromShoppingCartInDb(getById(id).get());
-        return deleteFromShoppingCartTable(id);
+        return deleteShoppingCartProductsRelation(getById(id).get());
     }
 
     @Override
     public List<ShoppingCart> getAll() {
         List<ShoppingCart> allShoppingCarts = getAllFromShoppingCartsTable();
         for (ShoppingCart cart : allShoppingCarts) {
-            getAndSetProductList(Optional.of(cart));
+            cart.setProducts(getProductList(cart.getId()));
         }
         return allShoppingCarts;
     }
@@ -115,27 +120,23 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private Optional<ShoppingCart> getAndSetProductList(Optional<ShoppingCart> cart) {
-        if (cart.isEmpty()) {
-            return Optional.empty();
-        }
+    private List<Product> getProductList(Long cartId) {
         String getProductList = "SELECT p.product_id, p.name, p.price FROM products p "
                 + "INNER JOIN shopping_carts_products sp ON p.product_id = sp.product_id"
                 + " WHERE sp.shopping_cart_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(getProductList)) {
-            statement.setLong(1, cart.get().getId());
+            statement.setLong(1, cartId);
             ResultSet resultSet = statement.executeQuery();
             List<Product> productList = new ArrayList<>();
             while (resultSet.next()) {
                 productList.add(getProduct(resultSet));
             }
-            cart.get().setProducts(productList);
-            return cart;
+            return productList;
         } catch (SQLException e) {
             throw new DataProcessingException(
-                    "Can't get products from shopping cart with id: " + cart.get().getId(), e);
+                    "Can't get products from shopping cart with id: " + cartId, e);
         }
     }
 
@@ -188,7 +189,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private boolean deleteProductsFromShoppingCartInDb(ShoppingCart cart) {
+    private boolean deleteShoppingCartProductsRelation(ShoppingCart cart) {
         String deleteProductsQuery = "DELETE FROM shopping_carts_products "
                 + "WHERE shopping_cart_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
@@ -202,7 +203,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private boolean setProductsToShoppingCartInDb(ShoppingCart cart) {
+    private boolean insertShoppingCartProductsRelation(ShoppingCart cart) {
         String setProductsQuery = "INSERT INTO shopping_carts_products "
                 + "(shopping_cart_id, product_id) VALUES (?,?)";
         try (Connection connection = ConnectionUtil.getConnection();

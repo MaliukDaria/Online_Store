@@ -20,26 +20,52 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Order create(Order order) {
         Order createdOrder = createOrderInOrdersTable(order);
-        setProductsToOrder(createdOrder);
+        insertProductsOrderRelation(createdOrder);
         return createdOrder;
     }
 
     @Override
     public Order update(Order order) {
         Order updatedOrder = updateOrderInOrdersTable(order);
-        deleteProductsFromOrder(updatedOrder);
-        setProductsToOrder(updatedOrder);
+        deleteProductsOrderRelation(updatedOrder);
+        insertProductsOrderRelation(updatedOrder);
         return updatedOrder;
     }
 
     @Override
     public Optional<Order> getById(Long id) {
         Optional<Order> order = getOrderFromOrdersTable(id);
-        return getAndSetProductList(order);
+        if (order.isPresent()) {
+            order.get().setProducts(getProductList(id));
+        }
+        return order;
     }
 
     @Override
     public List<Order> getUserOrders(Long userId) {
+        List<Order> userOrders = getUserOrdersFromOrdersTable(userId);
+        for (Order order : userOrders) {
+            order.setProducts(getProductList(order.getId()));
+        }
+        return userOrders;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return deleteOrderFromOrdersTable(id);
+    }
+
+    @Override
+    public List<Order> getAll() {
+        List<Order> allOrders = getAllOrdersFromOrderTable();
+        for (Order order : allOrders) {
+            List<Product> orderProductList = getProductList(order.getId());
+            order.setProducts(orderProductList);
+        }
+        return allOrders;
+    }
+
+    private List<Order> getUserOrdersFromOrdersTable(Long userId) {
         String getUserOrdersQuery = "SELECT order_id, user_id FROM orders "
                 + "WHERE user_id = ? AND isDeleted = false";
         List<Order> usersOrders = new ArrayList<>();
@@ -51,30 +77,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 usersOrders.add(getOrder(resultSet));
             }
+            return usersOrders;
         } catch (SQLException e) {
             throw new DataProcessingException(
                     "Can't get orders list with user id: " + userId, e);
         }
-        for (Order order : usersOrders) {
-            getAndSetProductList(Optional.of(order));
-        }
-        return usersOrders;
-    }
-
-    @Override
-    public boolean delete(Long id) {
-        deleteOrderFromOrdersTable(id);
-        deleteProductsFromOrder(getById(id).get());
-        return true;
-    }
-
-    @Override
-    public List<Order> getAll() {
-        List<Order> allOrders = getAllOrdersFromOrderTable();
-        for (Order order : allOrders) {
-            getAndSetProductList(Optional.of(order));
-        }
-        return allOrders;
     }
 
     private List<Order> getAllOrdersFromOrderTable() {
@@ -107,32 +114,29 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private Optional<Order> getAndSetProductList(Optional<Order> order) {
-        if (order.isEmpty()) {
-            return Optional.empty();
-        }
+    private List<Product> getProductList(Long orderId) {
         String getProductListQuery = "SELECT p.product_id, p.name, p.price FROM products p "
                 + "INNER JOIN orders_products op ON p.product_id = op.product_id"
                 + " WHERE op.order_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(getProductListQuery)) {
-            statement.setLong(1, order.get().getId());
+            statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
             List<Product> productList = new ArrayList<>();
             while (resultSet.next()) {
                 productList.add(getProduct(resultSet));
             }
-            order.get().setProducts(productList);
-            return order;
+            return productList;
         } catch (SQLException e) {
             throw new DataProcessingException(
-                    "Can't get product list with order id: " + order.get().getId(), e);
+                    "Can't get product list with order id: " + orderId, e);
         }
     }
 
     private Optional<Order> getOrderFromOrdersTable(Long id) {
-        String getOrderQuery = "SELECT order_id, user_id FROM orders WHERE order_id = ?";
+        String getOrderQuery = "SELECT order_id, user_id FROM orders WHERE order_id = ? "
+                + "AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(getOrderQuery)) {
@@ -147,7 +151,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private boolean setProductsToOrder(Order order) {
+    private boolean insertProductsOrderRelation(Order order) {
         String setProductsQuery = "INSERT INTO orders_products (order_id, product_id)"
                 + " VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
@@ -189,7 +193,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private boolean deleteProductsFromOrder(Order order) {
+    private boolean deleteProductsOrderRelation(Order order) {
         String deleteProducts = "DELETE FROM orders_products WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
