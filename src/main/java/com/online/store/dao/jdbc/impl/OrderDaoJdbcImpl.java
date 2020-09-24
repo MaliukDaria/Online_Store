@@ -117,7 +117,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private List<Product> getProductList(Long orderId) {
         String getProductListQuery = "SELECT p.product_id, p.name, p.price FROM products p "
                 + "INNER JOIN orders_products op ON p.product_id = op.product_id"
-                + " WHERE op.order_id = ? AND isDeleted = false";
+                + " WHERE op.order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
                         .prepareStatement(getProductListQuery)) {

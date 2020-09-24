@@ -139,6 +139,10 @@ INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '1'
 INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('2', '2');
 INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('3', '2');
 
+INSERT INTO orders (user_id) VALUES (1);
+INSERT INTO orders (user_id) VALUES (2);
+INSERT INTO orders (user_id) VALUES (3);
+
 ALTER TABLE `online_store`.`users`
     DROP INDEX `login_UNIQUE` ;
 ;
