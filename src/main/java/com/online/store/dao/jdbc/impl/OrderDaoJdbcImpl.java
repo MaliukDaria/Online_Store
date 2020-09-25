@@ -199,8 +199,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
                 PreparedStatement statement = connection
                         .prepareStatement(deleteProducts)) {
             statement.setLong(1, order.getId());
-            statement.executeUpdate();
-            return true;
+            int numberOfDeletedRows = statement.executeUpdate();
+            return numberOfDeletedRows != 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete products from order ", e);
         }
