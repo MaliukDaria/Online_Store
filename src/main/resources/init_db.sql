@@ -11,40 +11,40 @@ CREATE TABLE `online_store`.`products`
 
 CREATE TABLE `online_store`.`users`
 (
-    `user_id`   BIGINT(11)   NOT NULL AUTO_INCREMENT,
-    `login`     VARCHAR(255) NOT NULL,
-    `password`  VARCHAR(255) NOT NULL,
-    `name`      VARCHAR(255) NULL,
-    `isDeleted` TINYINT      NOT NULL DEFAULT 0,
-    PRIMARY KEY (`user_id`),
-    UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
-);
+    `user_id`   bigint(11)     NOT NULL AUTO_INCREMENT,
+    `login`     varchar(255)   NOT NULL,
+    `password`  varchar(255)   NOT NULL,
+    `name`      varchar(255)            DEFAULT NULL,
+    `isDeleted` tinyint        NOT NULL DEFAULT '0',
+    `salt`      varbinary(255) NOT NULL,
+    PRIMARY KEY (`user_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 CREATE TABLE `online_store`.`shopping_carts`
 (
-    `shopping_cart_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-    `user_id`          BIGINT(11) NOT NULL,
+    `shopping_cart_id` bigint  NOT NULL AUTO_INCREMENT,
+    `user_id`          bigint  NOT NULL,
+    `isDeleted`        tinyint NOT NULL DEFAULT '0',
     PRIMARY KEY (`shopping_cart_id`),
-    INDEX `shopping_carts_users_fk_idx` (`user_id` ASC) VISIBLE,
-    CONSTRAINT `shopping_carts_users_fk`
-        FOREIGN KEY (`user_id`)
-            REFERENCES `online_store`.`users` (`user_id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-);
+    KEY `shopping_carts_users_fk_idx` (`user_id`),
+    CONSTRAINT `shopping_carts_users_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 CREATE TABLE `online_store`.`orders`
 (
-    `order_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-    `user_id`  BIGINT(11) NOT NULL,
+    `order_id`  bigint  NOT NULL AUTO_INCREMENT,
+    `user_id`   bigint  NOT NULL,
+    `isDeleted` tinyint NOT NULL DEFAULT '0',
     PRIMARY KEY (`order_id`),
-    INDEX `order_user_fk_idx` (`user_id` ASC) VISIBLE,
-    CONSTRAINT `order_user_fk`
-        FOREIGN KEY (`user_id`)
-            REFERENCES `online_store`.`users` (`user_id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-);
+    KEY `order_user_fk_idx` (`user_id`),
+    CONSTRAINT `order_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 CREATE TABLE `online_store`.`roles`
 (
@@ -70,12 +70,6 @@ CREATE TABLE `online_store`.`users_roles`
             ON DELETE NO ACTION
             ON UPDATE NO ACTION
 );
-
-ALTER TABLE `online_store`.`orders`
-    ADD COLUMN `isDeleted` TINYINT NOT NULL DEFAULT 0 AFTER `user_id`;
-
-ALTER TABLE `online_store`.`shopping_carts`
-    ADD COLUMN `isDeleted` TINYINT NOT NULL DEFAULT 0 AFTER `user_id`;
 
 CREATE TABLE `online_store`.`orders_products`
 (
@@ -113,27 +107,7 @@ CREATE TABLE `online_store`.`shopping_carts_products`
             ON UPDATE NO ACTION
 );
 
-ALTER TABLE `online_store`.`orders_products`
-    ADD COLUMN `id` BIGINT(11) NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`);
-;
-
-ALTER TABLE `online_store`.`shopping_carts_products`
-    ADD COLUMN `id` BIGINT(11) NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`);
-;
-
-ALTER TABLE `online_store`.`users_roles`
-    ADD COLUMN `id` BIGINT(11) NOT NULL AUTO_INCREMENT FIRST,
-    ADD PRIMARY KEY (`id`);
-;
-
-INSERT INTO `online_store`.`roles` (`role_id`, `name`) VALUES ('1', 'ADMIN');
-INSERT INTO `online_store`.`roles` (`role_id`, `name`) VALUES ('2', 'USER');
-
-ALTER TABLE `online_store`.`users`
-    DROP INDEX `login_UNIQUE` ;
-;
-
-ALTER TABLE `online_store`.`users`
-    ADD COLUMN `salt` VARBINARY(255) NOT NULL AFTER `isDeleted`;
+INSERT INTO `online_store`.`roles` (`role_id`, `name`)
+VALUES ('1', 'ADMIN');
+INSERT INTO `online_store`.`roles` (`role_id`, `name`)
+VALUES ('2', 'USER');
