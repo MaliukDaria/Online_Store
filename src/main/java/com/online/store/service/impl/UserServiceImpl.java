@@ -5,6 +5,7 @@ import com.online.store.lib.Inject;
 import com.online.store.lib.Service;
 import com.online.store.model.User;
 import com.online.store.service.UserService;
+import com.online.store.util.HashUtil;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        byte[] salt = HashUtil.getSalt();
+        user.setSalt(salt);
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
         return userDao.create(user);
     }
 

@@ -146,3 +146,7 @@ INSERT INTO orders (user_id) VALUES (3);
 ALTER TABLE `online_store`.`users`
     DROP INDEX `login_UNIQUE` ;
 ;
+
+ALTER TABLE `online_store`.`users`
+    ADD COLUMN `salt` VARBINARY(255) NOT NULL AFTER `isDeleted`;
+
