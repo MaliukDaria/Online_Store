@@ -61,6 +61,15 @@ public class User {
                 + ", name='" + name + '\''
                 + ", login='" + login + '\''
                 + ", password='" + password + '\''
+                + ", roles=" + toRolesString(roles)
                 + '}';
+    }
+
+    private String toRolesString(Set<Role> roleSet) {
+        StringBuilder roles = new StringBuilder();
+        for (Role role : roleSet) {
+            roles.append(role.getRoleName()).append(" ");
+        }
+        return roles.toString();
     }
 }

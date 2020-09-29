@@ -18,10 +18,10 @@ import java.util.Optional;
 public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
-        String query = "INSERT INTO products (name, price) VALUES (?, ?)";
+        String createProductQuery = "INSERT INTO products (name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection
-                        .prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+                        .prepareStatement(createProductQuery, Statement.RETURN_GENERATED_KEYS)) {
             Product createdProduct = new Product(product.getName(), product.getPrice());
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -39,10 +39,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        String query = "UPDATE products SET name = ?, price = ? "
+        String updateProductQuery = "UPDATE products SET name = ?, price = ? "
                 + "WHERE product_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(updateProductQuery)) {
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setLong(3, product.getId());
@@ -60,9 +60,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> getById(Long id) {
-        String query = "SELECT * FROM products WHERE product_id = ? AND isDeleted = false";
+        String getProductByIdQuery = "SELECT * FROM products "
+                + "WHERE product_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(getProductByIdQuery)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -77,9 +78,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "UPDATE products SET isDeleted = true WHERE product_id = ?";
+        String deleteProductQuery = "UPDATE products SET isDeleted = true "
+                + "WHERE product_id = ? AND isDeleted = false";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(deleteProductQuery)) {
             statement.setLong(1, id);
             int numberOfDeletedProducts = statement.executeUpdate();
             return numberOfDeletedProducts != 0;
@@ -90,10 +92,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        String query = "SELECT * FROM products WHERE isDeleted = false";
+        String getAllProductsQuery = "SELECT * FROM products WHERE isDeleted = false";
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement statement = connection.prepareStatement(query)) {
+                PreparedStatement statement = connection.prepareStatement(getAllProductsQuery)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Product product = getProduct(resultSet);
