@@ -28,22 +28,22 @@ public class InjectTestDataController extends HttpServlet {
             throws ServletException, IOException {
         User admin = new User("Admin", "admin");
         admin.setRoles(Set.of(Role.of("ADMIN")));
-        User daria = new User("Daria", "1234");
-        daria.setRoles(Set.of(Role.of("USER")));
-        User ruslan = new User("Ruslan", "54321");
-        ruslan.setRoles(Set.of(Role.of("USER")));
-        User alex = new User("Alex", "hello");
-        alex.setRoles(Set.of(Role.of("USER")));
-        userService.create(admin);
-        userService.create(daria);
-        userService.create(ruslan);
-        userService.create(alex);
-        ShoppingCart dashaShoppingCart = new ShoppingCart(daria.getId());
-        ShoppingCart ruslanShoppingCart = new ShoppingCart(ruslan.getId());
-        ShoppingCart alexShoppingCart = new ShoppingCart(alex.getId());
-        shoppingCartService.create(dashaShoppingCart);
-        shoppingCartService.create(ruslanShoppingCart);
-        shoppingCartService.create(alexShoppingCart);
+
+        User bob = new User("Bob", "1111");
+        bob.setRoles(Set.of(Role.of("USER"), Role.of("ADMIN")));
+
+        User alise = new User("Alise", "1111");
+        alise.setRoles(Set.of(Role.of("USER")));
+        
+        admin = userService.create(admin);
+        bob = userService.create(bob);
+        alise = userService.create(alise);
+        ShoppingCart bobShoppingCart = new ShoppingCart(bob.getId());
+        ShoppingCart aliseShoppingCart = new ShoppingCart(alise.getId());
+        ShoppingCart adminShoppingCart = new ShoppingCart(admin.getId());
+        shoppingCartService.create(bobShoppingCart);
+        shoppingCartService.create(aliseShoppingCart);
+        shoppingCartService.create(adminShoppingCart);
 
         Product samsung = new Product("Samsung", 200);
         Product asus = new Product("asus", 1500);

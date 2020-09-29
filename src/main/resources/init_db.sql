@@ -131,22 +131,9 @@ ALTER TABLE `online_store`.`users_roles`
 INSERT INTO `online_store`.`roles` (`role_id`, `name`) VALUES ('1', 'ADMIN');
 INSERT INTO `online_store`.`roles` (`role_id`, `name`) VALUES ('2', 'USER');
 
-INSERT INTO `online_store`.`users` (`login`, `password`) VALUES ('Admin', 'admin');
-INSERT INTO `online_store`.`users` (`login`, `password`) VALUES ('Bob', '1111');
-INSERT INTO `online_store`.`users` (`login`, `password`) VALUES ('Alise', '1111');
-
-INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '1');
-INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('2', '2');
-INSERT INTO `online_store`.`users_roles` (`user_id`, `role_id`) VALUES ('3', '2');
-
-INSERT INTO orders (user_id) VALUES (1);
-INSERT INTO orders (user_id) VALUES (2);
-INSERT INTO orders (user_id) VALUES (3);
-
 ALTER TABLE `online_store`.`users`
     DROP INDEX `login_UNIQUE` ;
 ;
 
 ALTER TABLE `online_store`.`users`
     ADD COLUMN `salt` VARBINARY(255) NOT NULL AFTER `isDeleted`;
-
