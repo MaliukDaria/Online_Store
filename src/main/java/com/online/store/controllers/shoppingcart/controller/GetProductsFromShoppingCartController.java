@@ -22,6 +22,8 @@ public class GetProductsFromShoppingCartController extends HttpServlet {
             throws ServletException, IOException {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(
                 (Long) req.getSession().getAttribute(USER_ID));
+        Double sum = shoppingCartService.getTotalSum(shoppingCart.getId());
+        req.setAttribute("totalSum", sum);
         List<Product> products = shoppingCart.getProducts();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/WEB-INF/views/shoppingcart/products.jsp").forward(req, resp);

@@ -50,6 +50,17 @@
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
+        .registerbtn {
+            background-color: #34432f;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            opacity: 0.9;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -90,10 +101,17 @@
             </td>
         </tr>
     </c:forEach>
+    <table >
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Total sum:</th>
+            <th>${totalSum}</th>
+        </tr>
 </table>
 <form method="post" action="${pageContext.request.contextPath}/order/add">
     <br/> <br/>
-    <button type="submit">Checkout</button>
+    <button type="submit" class="registerbtn">Checkout</button>
 </form>
 </body>
 </html>
