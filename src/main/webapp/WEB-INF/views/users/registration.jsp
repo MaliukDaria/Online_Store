@@ -31,7 +31,7 @@
             border: 1px solid #f1f1f1;
             margin-bottom: 25px;
         }
-        .registerbtn {
+        .checkoutbtn {
             background-color: #34432f;
             color: white;
             padding: 16px 20px;
@@ -42,7 +42,7 @@
             opacity: 0.9;
             float: left;
         }
-        .registerbtn:hover {
+        .checkoutbtn:hover {
             opacity: 1;
         }
         a {

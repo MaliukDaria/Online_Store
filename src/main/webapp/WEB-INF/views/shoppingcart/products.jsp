@@ -18,7 +18,7 @@
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
-        .registerbtn {
+        .checkoutbtn {
             background-color: #34432f;
             color: white;
             padding: 16px 20px;
@@ -67,7 +67,7 @@
 </table>
 <form method="post" action="${pageContext.request.contextPath}/order/add">
     <br/> <br/>
-    <button type="submit" class="registerbtn">Checkout</button>
+    <button type="submit" class="checkoutbtn">Checkout</button>
 </form>
 </body>
 </html>

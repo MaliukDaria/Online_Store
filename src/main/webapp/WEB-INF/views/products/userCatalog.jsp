@@ -29,6 +29,17 @@
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
+        .cartbtn {
+            background-color: #34432f;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            opacity: 0.9;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +70,6 @@
     </c:forEach>
 </table>
 <br/> <br/>
-<a href="${pageContext.request.contextPath}/shopping-cart/products"><button>Go to shopping cart</button></a>
+<a href="${pageContext.request.contextPath}/shopping-cart/products"><button class="cartbtn">Go to shopping cart</button></a>
 </body>
 </html>
