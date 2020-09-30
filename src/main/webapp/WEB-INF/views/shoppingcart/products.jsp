@@ -5,22 +5,12 @@
     <title>Shopping cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 60%;
-            border: 1px solid #ddd;
-        }
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
+        <%@include file="../styles/table.css"%>
+        <%@include file="../styles/button.css"%>
     </style>
 </head>
 <body>
+<jsp:include page="../header/header.jsp"></jsp:include>
 <h2>Shopping Cart</h2>
 <table border="1">
     <tr>
@@ -45,10 +35,17 @@
             </td>
         </tr>
     </c:forEach>
+    <table >
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Total sum:</th>
+            <th>${totalSum}</th>
+        </tr>
 </table>
 <form method="post" action="${pageContext.request.contextPath}/order/add">
     <br/> <br/>
-    <button type="submit">Checkout</button>
+    <button type="submit" class="button">Checkout</button>
 </form>
 </body>
 </html>

@@ -33,6 +33,7 @@ public class RegisterUserController extends HttpServlet {
         if (userService.getByLogin(login).isPresent()) {
             req.setAttribute("errorLoginMessage", "User with this login is already registered");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
+            return;
         }
         String password = req.getParameter("password");
         String repeatPassword = req.getParameter("repeatPassword");

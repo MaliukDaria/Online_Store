@@ -6,12 +6,8 @@
     <title>Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
+        <%@include file="../styles/table.css"%>
+        <%@include file="../styles/button.css"%>
         input[type=submit] {
             width: 100%;
             background-color: #34432f;
@@ -22,16 +18,10 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
     </style>
 </head>
 <body>
+<jsp:include page="../header/header.jsp"></jsp:include>
 <h2>Product catalog</h2>
 <table border="1">
     <tr>
@@ -58,6 +48,7 @@
     </c:forEach>
 </table>
 <br/> <br/>
-<a href="${pageContext.request.contextPath}/shopping-cart/products"><button>Go to shopping cart</button></a>
+<a href="${pageContext.request.contextPath}/shopping-cart/products"><button class="button">Go to shopping cart</button></a>
+<br/> <br/>
 </body>
 </html>

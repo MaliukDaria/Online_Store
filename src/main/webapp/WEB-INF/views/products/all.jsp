@@ -6,23 +6,12 @@
     <title>Product catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
+        <%@include file="../styles/table.css"%>
+        <%@include file="../styles/button.css"%>
     </style>
 </head>
 <body>
+<jsp:include page="../header/header.jsp"></jsp:include>
 <h1>All products</h1>
 <table border="1">
     <tr>
@@ -49,6 +38,9 @@
     </c:forEach>
 </table>
 <br/> <br/>
-<a href="${pageContext.request.contextPath}/products/add"><button>Add product</button></a>
+<a href="${pageContext.request.contextPath}/products/add">
+    <button class="button">Add product</button>
+</a>
+<br/> <br/>
 </body>
 </html>
