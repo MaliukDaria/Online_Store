@@ -5,36 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         <%@include file="../styles/button.css"%>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #ffffff;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        .container {
-            padding: 16px;
-            background-color: white;
-        }
-        input[type=text], input[type=password] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            display: inline-block;
-            border: none;
-            background: #f1f1f1;
-        }
-        input[type=text]:focus, input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-        }
-        hr {
-            border: 1px solid #f1f1f1;
-            margin-bottom: 25px;
-        }
-        a {
-            color: dodgerblue;
-        }
+        <%@include file="../styles/registration.css"%>
+
     </style>
 </head>
 <body>

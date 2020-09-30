@@ -5,38 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-        }
-        .header-img {
-            width: 100%;
-            height: 200px;
-            background:  url('https://yls89h5e1x-flywheel.netdna-ssl.com/wp-content/uploads/2019/08/iStock-image-of-Tatras_Slovakia_1.jpg');
-            background-size: cover;
-        }
-        .header h1 {
-            font-size: 40px;
-        }
-        .navbar {
-            overflow: hidden;
-            background-color: #34432f;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-        .navbar a.right {
-            float: right;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: #4c4c4c;
-        }
+        <%@include file="../styles/header.css"%>
     </style>
 </head>
 <body>
