@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        <%@include file="../styles/button.css"%>
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #ffffff;
@@ -31,20 +32,6 @@
             border: 1px solid #f1f1f1;
             margin-bottom: 25px;
         }
-        .checkoutbtn {
-            background-color: #34432f;
-            color: white;
-            padding: 16px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 50%;
-            opacity: 0.9;
-            float: left;
-        }
-        .checkoutbtn:hover {
-            opacity: 1;
-        }
         a {
             color: dodgerblue;
         }
@@ -64,7 +51,7 @@
         Repeat Password
         <input type="password" required minlength="4" placeholder="Repeat Password" name="repeatPassword" required>
         <h4 style="color:red"> ${errorMessage} </h4>
-        <button type="submit" class="registerbtn">Register</button>
+        <button type="submit" class="button">Register</button>
     </div>
 </form>
 </body>

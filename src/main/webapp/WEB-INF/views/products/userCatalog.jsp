@@ -6,12 +6,8 @@
     <title>Catalog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 100%;
-            border: 1px solid #ddd;
-        }
+        <%@include file="../styles/table.css"%>
+        <%@include file="../styles/button.css"%>
         input[type=submit] {
             width: 100%;
             background-color: #34432f;
@@ -21,24 +17,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-        }
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-        .cartbtn {
-            background-color: #34432f;
-            color: white;
-            padding: 16px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 50%;
-            opacity: 0.9;
-            float: left;
         }
     </style>
 </head>
@@ -70,6 +48,7 @@
     </c:forEach>
 </table>
 <br/> <br/>
-<a href="${pageContext.request.contextPath}/shopping-cart/products"><button class="cartbtn">Go to shopping cart</button></a>
+<a href="${pageContext.request.contextPath}/shopping-cart/products"><button class="button">Go to shopping cart</button></a>
+<br/> <br/>
 </body>
 </html>

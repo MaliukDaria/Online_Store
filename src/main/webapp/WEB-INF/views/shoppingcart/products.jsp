@@ -5,30 +5,8 @@
     <title>Shopping cart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-            width: 60%;
-            border: 1px solid #ddd;
-        }
-        th, td {
-            text-align: left;
-            padding: 16px;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-        .checkoutbtn {
-            background-color: #34432f;
-            color: white;
-            padding: 16px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 50%;
-            opacity: 0.9;
-            float: left;
-        }
+        <%@include file="../styles/table.css"%>
+        <%@include file="../styles/button.css"%>
     </style>
 </head>
 <body>
@@ -67,7 +45,7 @@
 </table>
 <form method="post" action="${pageContext.request.contextPath}/order/add">
     <br/> <br/>
-    <button type="submit" class="checkoutbtn">Checkout</button>
+    <button type="submit" class="button">Checkout</button>
 </form>
 </body>
 </html>
