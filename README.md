@@ -33,4 +33,4 @@ dbProperties.put ("password", "1111"); )
 - a user with administrator and regular user rights (Login: Bob, password: 1111)
 - several test products
 ## Author
-Maliuk Daria (https://github.com/MaliukDaria)
+[Maliuk Daria] (https://github.com/MaliukDaria)
