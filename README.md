@@ -9,8 +9,6 @@ Project based on 3-layer architecture:
 - Application layer (services)
 - Data access layer (DAO)
 
-There are two DAO layer implementations in the project: using local Storage (ordinary List) and using JDBC and local MySQL database. JSP pages are used to display information in the browser. 
-
 ### Technologies
 * Apache Tomcat - version 9.0.37
 * MySQL - version 8.0.21
