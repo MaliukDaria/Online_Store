@@ -10,7 +10,9 @@
 </head>
 <body>
 <div class="header-img">
+    <a href="${pageContext.request.contextPath}/">
     <img class="image" src="${pageContext.request.contextPath}/image?imageName=picture.png" alt="mountains">
+    </a>
 </div>
 <div class="navbar">
     <a href="${pageContext.request.contextPath}/products/all">Product catalog</a>
