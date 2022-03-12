@@ -16,9 +16,9 @@ public class ConnectionUtil {
 
     public static Connection getConnection() {
         Properties dbProperties = new Properties();
-        dbProperties.put("user", "root");
-        dbProperties.put("password", "1111");
-        String url = "jdbc:mysql://localhost:3306/online_store?serverTimezone=UTC";
+        dbProperties.put("user", "sql11478693");
+        dbProperties.put("password", "uZzZ8S7vWS");
+        String url = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql11478693?serverTimezone=UTC";
         try {
             return DriverManager.getConnection(url, dbProperties);
         } catch (SQLException e) {

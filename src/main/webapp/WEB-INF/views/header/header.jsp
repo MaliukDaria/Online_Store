@@ -9,7 +9,9 @@
     </style>
 </head>
 <body>
-<div class="header-img"></div>
+<div class="header-img">
+    <img class="image" src="${pageContext.request.contextPath}/image?imageName=picture.png" alt="mountains">
+</div>
 <div class="navbar">
     <a href="${pageContext.request.contextPath}/products/all">Product catalog</a>
     <a href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>

@@ -23,6 +23,7 @@ public class AuthenticationFilter implements Filter {
         availableUrls.add("/users/registration");
         availableUrls.add("/users/injectData");
         availableUrls.add("/products/all");
+        availableUrls.add("/image");
     }
 
     @Override
